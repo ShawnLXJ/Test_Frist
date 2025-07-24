@@ -181,57 +181,105 @@
         </div>
       </div>
       
+      <!-- 左右分栏布局 -->
       <div class="form-row">
-        <div class="form-field" style="width: 50%;">
-          <span class="field-label">主诉：</span>
-          <div class="checkbox-group">
-            <label class="checkbox-item">
-              <input type="checkbox" v-model="formData.emergencyMeasures.bloodPressureCheck" />
-              <span>血压检测</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" v-model="formData.emergencyMeasures.heartMonitoring" />
-              <span>心电监测</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" v-model="formData.emergencyMeasures.oxygenTherapy" />
-              <span>吸氧</span>
-            </label>
+        <!-- 左侧栏 -->
+        <div class="form-field" style="width: 50%; flex-direction: column; align-items: flex-start;">
+          <!-- 急救科目 -->
+          <div style="margin-bottom: 15px; width: 100%;">
+            <div style="font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #333; padding-bottom: 3px;">
+              急救科目：
+            </div>
+            <div class="checkbox-group" style="flex-direction: column; align-items: flex-start;">
+              <label class="checkbox-item">
+                <input type="checkbox" v-model="formData.emergencySubjects.bloodPressureMonitoring" />
+                <span>血压监测</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" v-model="formData.emergencySubjects.heartMonitoring" />
+                <span>心电监护</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" v-model="formData.emergencySubjects.oxygenTherapy" />
+                <span>吸氧</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" v-model="formData.emergencySubjects.ivAccess" />
+                <span>建立静脉通路</span>
+              </label>
+            </div>
+          </div>
+          
+          <!-- 后续检查 -->
+          <div style="margin-bottom: 15px; width: 100%;">
+            <div style="font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #333; padding-bottom: 3px;">
+              后续检查：
+            </div>
+            <textarea v-model="formData.followUpExamination" 
+                      style="width: 100%; min-height: 60px; border: 1px solid #ccc; padding: 5px; font-family: inherit; resize: vertical;"
+                      placeholder="请填写后续检查内容"></textarea>
           </div>
         </div>
-        <div class="form-field" style="width: 50%;">
-          <span class="field-label">专科支持：</span>
-          <div class="checkbox-group">
-            <label class="checkbox-item">
-              <input type="checkbox" v-model="formData.specialistSupport.emergency" />
-              <span>急诊科</span>
-            </label>
-            <label class="checkbox-item">
-              <input type="checkbox" v-model="formData.specialistSupport.orthopedics" />
-              <span>骨科</span>
-            </label>
+        
+        <!-- 右侧栏 -->
+        <div class="form-field" style="width: 50%; flex-direction: column; align-items: flex-start; border-left: 1px solid #333; padding-left: 10px;">
+          <!-- 项目支持 -->
+          <div style="margin-bottom: 15px; width: 100%;">
+            <div style="font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #333; padding-bottom: 3px;">
+              项目支持：
+            </div>
+            <div class="checkbox-group" style="flex-direction: column; align-items: flex-start;">
+              <label class="checkbox-item">
+                <input type="checkbox" v-model="formData.projectSupport.emergency" />
+                <span>急诊科</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" v-model="formData.projectSupport.orthopedics" />
+                <span>骨科</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" v-model="formData.projectSupport.cardiology" />
+                <span>心内科</span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" v-model="formData.projectSupport.neurology" />
+                <span>神经科</span>
+              </label>
+            </div>
+          </div>
+          
+          <!-- 院内准备 -->
+          <div style="margin-bottom: 15px; width: 100%;">
+            <div style="font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #333; padding-bottom: 3px;">
+              院内准备：
+            </div>
+            <textarea v-model="formData.hospitalPreparation" 
+                      style="width: 100%; min-height: 60px; border: 1px solid #ccc; padding: 5px; font-family: inherit; resize: vertical;"
+                      placeholder="请填写院内准备情况"></textarea>
           </div>
         </div>
       </div>
       
+      <!-- 底部区域 -->
       <div class="form-row">
         <div class="form-field" style="width: 100%;">
-          <span class="field-label">现场检查：</span>
-          <textarea v-model="formData.onSiteExamination" class="field-value text-area"></textarea>
+          <div style="font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #333; padding-bottom: 3px;">
+            现场检查：
+          </div>
+          <textarea v-model="formData.onSiteExamination" 
+                    style="width: 100%; min-height: 40px; border: 1px solid #ccc; padding: 5px; font-family: inherit; resize: vertical;"
+                    placeholder="左踝皮肤挫伤"></textarea>
         </div>
       </div>
       
       <div class="form-row">
         <div class="form-field" style="width: 100%;">
-          <span class="field-label">给药情况：</span>
-          <textarea v-model="formData.medicationAdministered" class="field-value text-area"></textarea>
-        </div>
-      </div>
-      
-      <div class="form-row">
-        <div class="form-field" style="width: 100%;">
-          <span class="field-label">院内准备：</span>
-          <textarea v-model="formData.hospitalPreparation" class="field-value text-area"></textarea>
+          <div style="font-weight: bold; margin-bottom: 8px; border-bottom: 1px solid #333; padding-bottom: 3px;">
+            给药情况：
+          </div>
+          <textarea v-model="formData.medicationAdministered" 
+                    style="width: 100%; min-height: 40px; border: 1px solid #ccc; padding: 5px; font-family: inherit; resize: vertical;"
+                    placeholder="请填写用药情况"></textarea>
         </div>
       </div>
     </div>
@@ -391,18 +439,24 @@ const formData = reactive({
   allergyHistory: '无',
   pastHistory: '',
   
-  // 急救措施
-  emergencyMeasures: {
-    bloodPressureCheck: false,
+  // 急救科目
+  emergencySubjects: {
+    bloodPressureMonitoring: false,
     heartMonitoring: false,
-    oxygenTherapy: false
+    oxygenTherapy: false,
+    ivAccess: false
   },
   
-  specialistSupport: {
+  // 项目支持
+  projectSupport: {
     emergency: false,
-    orthopedics: false
+    orthopedics: false,
+    cardiology: false,
+    neurology: false
   },
   
+  // 检查和处理
+  followUpExamination: '',
   onSiteExamination: '左踝皮肤挫伤',
   medicationAdministered: '',
   hospitalPreparation: '',
